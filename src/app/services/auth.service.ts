@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { User } from '../shared/user';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
 
 
 @Injectable({
@@ -28,7 +27,7 @@ export class AuthService {
       .post<any>(`${this.endpoint}/login`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', JSON.stringify(res.token));     
-        this.router.navigate(['dashboard/']);
+        this.router.navigate(['dashboard']);
       });
   }
 
