@@ -17,7 +17,7 @@ export class AuthService {
   constructor(private http: HttpClient, public router: Router) {}
   // Sign-up
   signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register-user`;
+    let api = `${this.endpoint}/register`;
     return this.http.post(api, user).pipe(catchError(this.handleError));
   }
 
