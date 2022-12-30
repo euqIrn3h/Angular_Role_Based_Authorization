@@ -1,5 +1,8 @@
 # AngularRoleBasedAuthorization
 
+This project uses role based authorization using jwt token. The api used it was maded using .NET6 and can be accessed on follow link.
+    https://github.com/euqIrn3h/NET6_WebApi_JWT_Role_Based_Auth
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
 
 ## Development server
