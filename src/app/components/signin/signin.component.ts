@@ -25,6 +25,9 @@ export class SigninComponent implements OnInit {
   ngOnInit() {}
 
   loginUser() {
-    this.authService.signIn(this.signinForm.value);
+    this.authService.signIn(this.signinForm.value).subscribe((res: any) => {
+      localStorage.setItem('access_token', JSON.stringify(res.token));  
+      this.router.navigate(['dashboard']); 
+    })
   }
 }

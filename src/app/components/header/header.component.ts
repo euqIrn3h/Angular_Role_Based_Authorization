@@ -62,6 +62,5 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.removeItem('access_token');
     this.isLoggedIn();
-    this.authService.refreshPage();
   }
 }

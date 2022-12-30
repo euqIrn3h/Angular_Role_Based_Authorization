@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../shared/user';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError} from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router} from '@angular/router';
 
@@ -17,22 +17,12 @@ export class AuthService {
   constructor(private http: HttpClient, public router: Router) {}
   // Sign-up
   signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register`;
-    return this.http.post(api, user).pipe(catchError(this.handleError));
+    return this.http.post(`${this.endpoint}/register`, user).pipe(catchError(this.handleError));
   }
 
   // Sign-in
   signIn(user: User) {
-    return this.http
-      .post<any>(`${this.endpoint}/login`, user)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', JSON.stringify(res.token));  
-        this.router.navigate(['dashboard']); 
-      });
-  }
-
-  refreshPage(){
-    window.location.reload();
+    return this.http.post(`${this.endpoint}/login`, user).pipe(catchError(this.handleError));
   }
   
   // Error
@@ -43,6 +33,9 @@ export class AuthService {
       msg = error.error.message;
     } else {
       // server-side error
+      if(error.status == 400){
+        window.alert(error.error)
+      }
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(msg);
