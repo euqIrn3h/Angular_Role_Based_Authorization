@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
@@ -15,7 +16,9 @@ export class AdminSecretService {
 
   constructor(private http: HttpClient, public router: Router, public authservice: AuthService) { }
 
-  getSecret() {
-    return this.http.get(this.endpoint+"/register").pipe(catchError(this.authservice.handleError));
+  getSecret(): Observable<any> {
+    return this.http.get(`${this.endpoint}/secretadmin`, {headers: this.headers}).pipe(
+      catchError(this.authservice.handleError)
+    );
   }
 }

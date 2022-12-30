@@ -36,6 +36,12 @@ export class AuthService {
       if(error.status == 400){
         window.alert(error.error)
       }
+      if(error.status == 401){
+        window.alert("Unauthorized!")
+      }
+      if(error.status == 403){
+        window.alert("Forbidden!")
+      }   
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(msg);

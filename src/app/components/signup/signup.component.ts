@@ -35,7 +35,6 @@ export class SignupComponent implements OnInit {
 
   registerUser() {
     this.authService.signUp(this.signupForm.value).subscribe((res) => {
-      console.log(res)
       if (res) {
         this.signupForm.reset();
         this.router.navigate(['log-in']);

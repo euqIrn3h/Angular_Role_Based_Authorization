@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminSecretService } from 'src/app/services/admin-secret.service';
 
 @Component({
   selector: 'app-admin-secret',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSecretComponent implements OnInit {
 
-  constructor() { }
+  public secret: string = '';
+  constructor(private adminService: AdminSecretService) { 
+    this.getSecret();
+  }
 
   ngOnInit(): void {
+  }
+
+  getSecret(){
+    this.adminService.getSecret().subscribe((res) => {
+      this.secret = res
+    });
   }
 
 }
