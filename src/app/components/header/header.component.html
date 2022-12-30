@@ -1,8 +1,13 @@
 <div class="d-flex flex-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm fixed-top">
-  <h5 class="font-weight-normal">AngularAuth</h5>
+  <h5 class="btn-link text-decoration-none fs-4 text-dark fw-bold" *ngIf="!isLogged">AngularAuth</h5>
+  <a class="btn-link text-decoration-none fs-4 text-dark fw-bold" routerLink="/dashboard" *ngIf="isLogged">AngularAuth</a>
   <nav class="d-flex flex-row">
-    <a  class="nav-link text-dark" routerLink="/usersecret">User Secret</a>
-    <a  class="nav-link text-dark" routerLink="/adminsecret">Admin Secret</a>
+    <a  class="nav-link text-dark" routerLink="/usersecret" *ngIf="isLogged">User Secret</a>
+    <a  class="nav-link text-dark" routerLink="/adminsecret" *ngIf="isLogged && isAdmin">Admin Secret</a>
   </nav>
-  <a (click)="logout()" type="button" class="btn btn-primary ms-auto">Logout</a>
+  <div class="ms-auto">
+    <a  class="btn btn-outline-secondary mx-1" routerLinkActive="active" routerLink="/log-in" *ngIf="!isLogged">Sign in</a>
+    <a class="btn btn-outline-primary mx-1 " routerLinkActive="active" routerLinkActive="active" routerLink="/sign-up" *ngIf="!isLogged">Sign up</a>
+    <a (click)="logout()" type="button" class="btn btn-primary " *ngIf="isLogged">Logout</a>
+  </div>
 </div>
